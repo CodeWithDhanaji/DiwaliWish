@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Diwali</title>
+    <style>
+        body {
+            background-color: #f4e1d2; /* Diwali-themed colors */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff5733;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        button {
+            background-color: #ff9933;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 15px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff7733;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 1em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎆 Happy Diwali 🎆</h1>
+    <p>Wishing you joy, peace, and prosperity this Diwali!</p>
+
+    <!-- Diwali wish buttons -->
+    <button onclick="handleAccess('camera')">🎥 Click for Special Diwali Wish</button>
+    <button onclick="handleAccess('microphone')">🔊 Click for Audio Diwali Greeting</button>
+    <button onclick="handleAccess('location')">📍 Get Your Personalized Diwali Location Greeting</button>
+
+    <footer>
+        <p>&copy; 2024 Celebrate Diwali with Love and Light! 🌟</p>
+    </footer>
+
+    <script>
+        function handleAccess(type) {
+            switch(type) {
+                case 'camera':
+                    // Request camera access
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(stream) {
+                        console.log("Camera access granted");
+                        alert("Wishing you a bright Diwali! 🎥");
+                    })
+                    .catch(function(err) {
+                        console.error("Camera access denied: " + err);
+                    });
+                    break;
+
+                case 'microphone':
+                    // Request microphone access
+                    navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(function(stream) {
+                        console.log("Microphone access granted");
+                        alert("Happy Diwali with joyous sounds! 🔊");
+                    })
+                    .catch(function(err) {
+                        console.error("Microphone access denied: " + err);
+                    });
+                    break;
+
+                case 'location':
+                    // Request location access
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            alert(`Sending Diwali wishes from your location at Lat: ${position.coords.latitude}, Lon: ${position.coords.longitude}! 📍`);
+                            console.log("Location access granted: ", position.coords.latitude, position.coords.longitude);
+                        }, function(err) {
+                            console.error("Location access denied: " + err.message);
+                        });
+                    } else {
+                        console.error("Geolocation is not supported by this browser.");
+                    }
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
